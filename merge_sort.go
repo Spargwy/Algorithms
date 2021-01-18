@@ -1,27 +1,5 @@
 package main
 
-import (
-	"fmt"
-	"math/rand"
-	"time"
-)
-
-func main() {
-	slice := []int{1, 2, 5, 0, -3, 231, 8, 16, 4}
-	fmt.Println("\nSorted", mergeSort(slice), "\n")
-}
-
-func generateSlice(size int) []int {
-
-	slice := make([]int, size, size)
-	rand.Seed(time.Now().UnixNano())
-	for i := 0; i < size; i++ {
-		slice[i] = rand.Intn(999) - rand.Intn(999)
-	}
-	return slice
-
-}
-
 func mergeSort(array []int) []int {
 	lenght := len(array)
 	if lenght == 1 {
@@ -72,6 +50,5 @@ func merge(left, right []int) (result []int) {
 		result[i] = right[j] //по сравнению с последним элементом массива left. Следовательно остальная часть массива result должна быть
 		i++                  //заполнена элементами из right.
 	}
-	fmt.Printf("Hello")
 	return
 }
