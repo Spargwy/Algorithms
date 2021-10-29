@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func insertionSort(array []int) {
 	/*Пока i меньше длины массива
 	присваиваем j значение i для следующего цикла
@@ -18,8 +16,5 @@ func insertionSort(array []int) {
 			}
 			j++
 		}
-	}
-	for el := range array {
-		fmt.Println(array[el])
 	}
 }
