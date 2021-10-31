@@ -3,11 +3,13 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"time"
 )
 
 func main() {
 	array := []int{2, 8, 7, 1, 3, 5, 6, 1}
 	array = quickSort(array, 0, len(array)-1)
+	fmt.Println(array)
 }
 
 func quickSort(array []int, from, to int) []int {
@@ -21,15 +23,15 @@ func quickSort(array []int, from, to int) []int {
 }
 
 func randomizedPartition(array []int, from, to int) ([]int, int) {
-	i := rand.Intn(to)
-	array[to] = array[i]
+	rand.Seed(time.Now().UnixNano())
+	i := rand.Intn((to - from))
+	array[to], array[i+from] = array[i+from], array[to]
 	return partition(array, from, to)
 }
 
 //Изменяет массив так, что слева находятся
 //самые маленькие значения, а справа - самые большие
 func partition(array []int, from, to int) ([]int, int) {
-	fmt.Println(array)
 	x := array[to]
 	//место i-х элементов постепенно занимают элементы,
 	//меньшие элемента с индексом to.
@@ -37,6 +39,7 @@ func partition(array []int, from, to int) ([]int, int) {
 	for j := from; j < to; j++ {
 		if array[j] < x {
 			array[i], array[j] = array[j], array[i]
+			i++
 		}
 	}
 
