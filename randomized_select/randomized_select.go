@@ -7,19 +7,29 @@ import (
 )
 
 func main() {
-	array := []int{16, 4, 10, 14, 7, 9, 3, 100, 2, 8, 1}
-	array = quickSort(array, 0, len(array)-1)
-	fmt.Println(array)
+	array := []int{16, 4, 10, 14, 7, 9, 3, 2, 8, 1}
+	for i := range array {
+		// fmt.Println(i)
+		j, _ := randomizedSelect(array, 0, len(array)-1, i)
+		fmt.Println(array, j)
+
+	}
 }
 
-func quickSort(array []int, from, to int) []int {
-	var q int
-	if from < to {
-		array, q = randomizedPartition(array, from, to)
-		array = quickSort(array, from, q-1)
-		array = quickSort(array, q+1, to)
+func randomizedSelect(array []int, p, r, i int) (int, []int) {
+	if p == r {
+		return array[p], array
 	}
-	return array
+	array, q := randomizedPartition(array, p, r)
+	k := q - p + 1
+	if i == k-1 {
+		return array[q], array
+	} else if i < k {
+		return randomizedSelect(array, p, q-1, i)
+	} else {
+		return randomizedSelect(array, q+1, r, i-k)
+	}
+
 }
 
 func randomizedPartition(array []int, from, to int) ([]int, int) {

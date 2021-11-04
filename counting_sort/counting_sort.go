@@ -3,30 +3,32 @@ package main
 import "fmt"
 
 func main() {
-	a := []int{16, 4, 10, 100, 14, 7, 9, 3, 2, 8, 1}
+	a := []int{16, 4, 10, 100, 14, 7, 9, 3, 2, 0, 8, 1}
 	a = countingSort(a)
 	fmt.Println(a)
 }
 
-func countingSort(array []int) []int {
-	k := maxElement(array)
+func countingSort(arr []int) []int {
 
-	c := make([]int, k+1)
-	for j := 0; j < len(array); j++ {
-		c[array[j]]++
+	k := maxElement(arr)
+	count := make([]int, k+1)
+
+	for i := 0; i < len(arr); i++ {
+		count[arr[i]] = count[arr[i]] + 1
 	}
+
 	for i := 1; i < k+1; i++ {
-		c[i] += c[i-1]
+		count[i] = count[i] + count[i-1]
 	}
-	result := make([]int, len(array)+1)
-	for j := len(array) - 1; j > 0; j-- {
-		result[c[array[j]]] = array[j]
-		c[array[j]]--
+
+	result := make([]int, len(arr)+1)
+	for j := 0; j < len(arr); j++ {
+		result[count[arr[j]]] = arr[j]
+		count[arr[j]] = count[arr[j]] - 1
 	}
-	result = result[1:]
+
 	return result
 }
-
 func maxElement(array []int) int {
 	max := array[0]
 	for i := 0; i < len(array); i++ {

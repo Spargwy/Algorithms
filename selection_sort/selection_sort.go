@@ -1,6 +1,6 @@
 package main
 
-func selectionSort(array []int) {
+func SelectionSort(array []int) {
 
 	lenght := len(array)
 	for i := 1; i < lenght; i++ {

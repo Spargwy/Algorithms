@@ -1,6 +1,6 @@
 package main
 
-func mergeSort(array []int) []int {
+func MergeSort(array []int) []int {
 	lenght := len(array)
 	if lenght == 1 {
 		return array
@@ -19,7 +19,7 @@ func mergeSort(array []int) []int {
 			right[i-middle] = array[i] //после середины присваиваем массиву right
 		}
 	}
-	return merge(mergeSort(left), mergeSort(right))
+	return merge(MergeSort(left), MergeSort(right))
 }
 
 func merge(left, right []int) (result []int) {
