@@ -11,7 +11,6 @@ func main() {
 		list.PushTail(a[i])
 	}
 	PrintList(list)
-	fmt.Println()
 	el, err := list.DeleteByIndex(8)
 	if err != nil {
 		fmt.Println(err, el)
